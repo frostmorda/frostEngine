@@ -1,7 +1,8 @@
-cmake_minimum_required(VERSION 3.26 FATAL_ERROR)\
+cmake_minimum_required(VERSION 3.26 FATAL_ERROR)
 set(PROJECT_NAME frostEngine)
 project(${PROJECT_NAME})
-set(SOURCES)
+set(SOURCES
+    src/main.cpp)
 set(HEADERS)
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
