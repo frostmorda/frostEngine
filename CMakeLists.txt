@@ -3,9 +3,16 @@ set(PROJECT_NAME frostEngine)
 project(${PROJECT_NAME})
 set(SOURCES
     src/main.cpp
-    src/shader.cpp)
+    src/shader.cpp
+    src/texture.cpp
+    src/game.cpp
+    src/resource_manager.cpp)
 set(HEADERS
-    src/shader.h)
+    src/shader.h
+    src/texture.h
+    src/game.h
+    src/resource_manager.h)
+    src/stb_image.h
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
 

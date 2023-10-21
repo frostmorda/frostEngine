@@ -23,6 +23,7 @@ Shader &Shader::operator=(Shader &&other)
     glDeleteProgram(id_);
     id_ = other.id_;
     other.id_ = 0;
+    return *this;
 }
 
 void Shader::Use() const
@@ -95,6 +96,7 @@ GLuint Shader::CompileShader(const std::string &shader_source_file_path, const G
     }
     std::stringstream buf;
     buf << file.rdbuf();
+    file.close();
     GLuint shader;
     shader = glCreateShader(shader_type);
     const char *shader_source = buf.str().c_str();
