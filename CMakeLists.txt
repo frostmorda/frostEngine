@@ -6,13 +6,19 @@ set(SOURCES
     src/shader.cpp
     src/texture.cpp
     src/game.cpp
-    src/resource_manager.cpp)
+    src/resource_manager.cpp
+    src/vertex_array.cpp
+    src/vertex_buffer.cpp
+    src/vertex_buffer_layout)
 set(HEADERS
     src/shader.h
     src/texture.h
     src/game.h
-    src/resource_manager.h)
-    src/stb_image.h
+    src/resource_manager.h
+    src/vertex_array.h
+    src/vertex_buffer.h
+    src/vertex_buffer_layout.h
+    src/stb_image.h)
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
 

@@ -1,5 +1,6 @@
 #ifndef SRC_GAME_H_
 #define SRC_GAME_H_
+
 enum class GameState {
     GAME_ACTIVE,
     GAME_MENU,

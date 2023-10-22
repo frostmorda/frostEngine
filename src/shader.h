@@ -1,5 +1,6 @@
 #ifndef SRC_SHADER_H_
 #define SRC_SHADER_H_
+
 #include <glad/glad.h>
 #include <iostream>
 #include <sstream>
@@ -12,9 +13,9 @@ public:
     Shader() = delete;
     Shader(const Shader &) = delete;
     Shader &operator=(const Shader &) = delete;
-    Shader(const std::string& vertex_shader_source_file_path, const std::string& fragment_shader_source_file_path);
-    Shader(Shader &&other);
-    Shader &operator=(Shader &&other);
+    Shader(const std::string &vertex_shader_source_file_path, const std::string &fragment_shader_source_file_path);
+    Shader(Shader &&other) noexcept;
+    Shader &operator=(Shader &&other) noexcept;
     void Use() const;
     void SetUniform(const std::string &name, float value) const;
     void SetUniform(const std::string &name, float first, float second) const;

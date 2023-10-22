@@ -40,6 +40,27 @@ Texture::Texture(std::string path, GLuint wrap_s, GLuint wrap_t, GLuint min_filt
     stbi_image_free(data);
 }
 
+Texture::Texture(Texture &&other) noexcept
+{
+    id_ = other.id_;
+    wrap_s_ = other.wrap_s_;
+    wrap_t_ = other.wrap_t_;
+    min_filter_ = other.min_filter_;
+    mag_filter_ - other.mag_filter_;
+    other.id_ = 0;
+}
+
+Texture &Texture::operator=(Texture &&other) noexcept
+{
+    id_ = other.id_;
+    wrap_s_ = other.wrap_s_;
+    wrap_t_ = other.wrap_t_;
+    min_filter_ = other.min_filter_;
+    mag_filter_ - other.mag_filter_;
+    other.id_ = 0;
+    return *this;
+}
+
 void Texture::Bind() const
 {
     glBindTexture(GL_TEXTURE_2D, id_);
