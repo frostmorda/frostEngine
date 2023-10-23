@@ -12,13 +12,13 @@ Shader::Shader(const std::string &vertex_shader_source_file_path, const std::str
     glDeleteShader(fragment_shader);
 }
 
-Shader::Shader(Shader &&other)
+Shader::Shader(Shader &&other) noexcept
 {
     id_ = other.id_;
     other.id_ = 0;
 }
 
-Shader &Shader::operator=(Shader &&other)
+Shader &Shader::operator=(Shader &&other) noexcept
 {
     glDeleteProgram(id_);
     id_ = other.id_;

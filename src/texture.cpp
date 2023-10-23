@@ -1,8 +1,9 @@
 #include "texture.h"
+#define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 #include <iostream>
 
-Texture::Texture(std::string path, GLuint wrap_s, GLuint wrap_t, GLuint min_filter, GLuint mag_filter)
+Texture::Texture(const std::string &path, GLuint wrap_s, GLuint wrap_t, GLuint min_filter, GLuint mag_filter)
     : wrap_s_(wrap_s), wrap_t_(wrap_t), min_filter_(min_filter), mag_filter_(mag_filter)
 {
     glGenTextures(1, &id_);
@@ -46,7 +47,7 @@ Texture::Texture(Texture &&other) noexcept
     wrap_s_ = other.wrap_s_;
     wrap_t_ = other.wrap_t_;
     min_filter_ = other.min_filter_;
-    mag_filter_ - other.mag_filter_;
+    mag_filter_ = other.mag_filter_;
     other.id_ = 0;
 }
 
@@ -56,7 +57,7 @@ Texture &Texture::operator=(Texture &&other) noexcept
     wrap_s_ = other.wrap_s_;
     wrap_t_ = other.wrap_t_;
     min_filter_ = other.min_filter_;
-    mag_filter_ - other.mag_filter_;
+    mag_filter_ = other.mag_filter_;
     other.id_ = 0;
     return *this;
 }

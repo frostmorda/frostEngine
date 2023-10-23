@@ -9,7 +9,7 @@ set(SOURCES
     src/resource_manager.cpp
     src/vertex_array.cpp
     src/vertex_buffer.cpp
-    src/vertex_buffer_layout)
+    src/vertex_buffer_layout.cpp)
 set(HEADERS
     src/shader.h
     src/texture.h
