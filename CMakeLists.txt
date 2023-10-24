@@ -9,7 +9,9 @@ set(SOURCES
     src/resource_manager.cpp
     src/vertex_array.cpp
     src/vertex_buffer.cpp
-    src/vertex_buffer_layout.cpp)
+    src/vertex_buffer_layout.cpp
+    src/index_buffer.cpp
+    src/sprite.cpp)
 set(HEADERS
     src/shader.h
     src/texture.h
@@ -18,6 +20,8 @@ set(HEADERS
     src/vertex_array.h
     src/vertex_buffer.h
     src/vertex_buffer_layout.h
+    src/index_buffer.h
+    src/sprite.h
     src/stb_image.h)
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
