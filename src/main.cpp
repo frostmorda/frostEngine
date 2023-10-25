@@ -1,4 +1,5 @@
 #include <iostream>
+#include "game/game_object.h"
 
 int main(int argc, char **argv)
 {

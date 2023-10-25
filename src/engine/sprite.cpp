@@ -1,8 +1,8 @@
 #include "sprite.h"
 #include <glm/gtc/matrix_transform.hpp>
 
-Sprite::Sprite(std::shared_ptr<Shader> shader, std::shared_ptr<Texture> texture, std::shared_ptr<VertexArray> vertex_array, const glm::vec2 &position, const glm::vec2 &size, const float rotation, const glm::vec3 &color)
-    : shader_(std::move(shader)), texture_(std::move(texture)), vertex_array_(std::move(vertex_array)), position_(position), size_(size), rotation_(rotation), color_(color)
+Sprite::Sprite(std::shared_ptr<Shader> shader, std::shared_ptr<Texture> texture, std::shared_ptr<VertexArray> vertex_array, const glm::vec2 &position, const glm::vec2 &size, const float rotation, const glm::vec3 &color, const std::string &model_matrix_name, const std::string &sprite_color_name)
+    : shader_(std::move(shader)), texture_(std::move(texture)), vertex_array_(std::move(vertex_array)), position_(position), size_(size), rotation_(rotation), color_(color), model_matrix_name_(model_matrix_name), sprite_color_name_(sprite_color_name)
 {
 }
 
@@ -10,10 +10,10 @@ Sprite::~Sprite()
 {
 }
 
-void Sprite::Draw(const std::string &model_matrix_name, const std::string &sprite_color_name)
+void Sprite::Draw()
 {
     shader_->Use();
-    Transformation(model_matrix_name, sprite_color_name);
+    Transformation();
     glActiveTexture(GL_TEXTURE0);
     texture_->Bind();
     vertex_array_->Bind();
@@ -56,7 +56,7 @@ void Sprite::SetColor(const glm::vec3 &color)
     color_ = color;
 }
 
-void Sprite::Transformation(const std::string &model_matrix_name, const std::string &sprite_color_name)
+void Sprite::Transformation()
 {
     shader_->Use();
     glm::mat4 model(1.0f);
@@ -65,6 +65,6 @@ void Sprite::Transformation(const std::string &model_matrix_name, const std::str
     model = glm::rotate(model, glm::radians(rotation_), glm::vec3(0.0f, 0.0f, 1.0f));
     model = glm::translate(model, glm::vec3(-0.5f * position_, 0.0f));
     model = scale(model, glm::vec3(size_, 1.0f));
-    shader_->SetUniform(model_matrix_name, model);
-    shader_->SetUniform(sprite_color_name, color_);
+    shader_->SetUniform(model_matrix_name_, model);
+    shader_->SetUniform(sprite_color_name_, color_);
 }

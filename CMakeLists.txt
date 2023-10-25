@@ -2,28 +2,19 @@ cmake_minimum_required(VERSION 3.26 FATAL_ERROR)
 set(PROJECT_NAME frostEngine)
 project(${PROJECT_NAME})
 set(SOURCES
-    src/main.cpp
-    src/shader.cpp
-    src/texture.cpp
-    src/game.cpp
-    src/resource_manager.cpp
-    src/vertex_array.cpp
-    src/vertex_buffer.cpp
-    src/vertex_buffer_layout.cpp
-    src/index_buffer.cpp
-    src/sprite.cpp)
-set(HEADERS
-    src/shader.h
-    src/texture.h
-    src/game.h
-    src/resource_manager.h
-    src/vertex_array.h
-    src/vertex_buffer.h
-    src/vertex_buffer_layout.h
-    src/index_buffer.h
-    src/sprite.h
-    src/stb_image.h)
-add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+    src/engine/shader.cpp
+    src/engine/texture.cpp
+    src/engine/resource_manager.cpp
+    src/engine/vertex_array.cpp
+    src/engine/vertex_buffer.cpp
+    src/engine/vertex_buffer_layout.cpp
+    src/engine/index_buffer.cpp
+    src/engine/sprite.cpp
+    src/game/game.cpp
+    src/game/game_object.cpp)
+add_library(${PROJECT_NAME}_lib STATIC ${SOURCES})
+add_executable(${PROJECT_NAME} src/main.cpp)
+target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}_lib)
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
 
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
@@ -32,12 +23,8 @@ set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 set(GLFW_INSTALL OFF CACHE BOOL "" FORCE)
 
 add_subdirectory(external/glfw)
-target_link_libraries(${PROJECT_NAME} glfw)
+target_link_libraries(${PROJECT_NAME}_lib glfw)
 
 add_subdirectory(external/glad)
-target_link_libraries(${PROJECT_NAME} glad)
+target_link_libraries(${PROJECT_NAME}_lib glad)
 include_directories(external/glm)
-
-add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-                    COMMAND ${CMAKE_COMMAND} -E copy_directory
-                    ${CMAKE_SOURCE_DIR}/res $<TARGET_FILE_DIR:${PROJECT_NAME}>/res)
