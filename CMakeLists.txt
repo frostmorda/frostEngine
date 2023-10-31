@@ -10,7 +10,7 @@ set(SOURCES
     src/engine/vertex_buffer_layout.cpp
     src/engine/index_buffer.cpp
     src/engine/sprite.cpp
-    src/game/game.cpp
+    src/game/igame.cpp
     src/game/game_object.cpp)
 add_library(${PROJECT_NAME}_lib STATIC ${SOURCES})
 add_executable(${PROJECT_NAME} src/main.cpp)
