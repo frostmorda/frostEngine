@@ -1,5 +1,6 @@
 #include <iostream>
 #include "game/igame.h"
+#include "engine/resource_manager.h"
 
 class Game : public IGame
 {
@@ -13,11 +14,13 @@ public:
 };
 int main(int argc, char **argv)
 {
-    Game g;
-    while (1)
+    ResourceManager::SetExecutablePath(argv[0]);
+    ResourceManager::LoadModelData("cube", ResourceManager::GetExecutablePath() + "model");
+    auto data = ResourceManager::GetModelData("cube");
+    for (auto &val : data)
     {
-        glfwSwapBuffers(g.GetWindow());
-        glfwPollEvents();
+        std::cout << val << " ";
     }
+    std::cout << std::endl;
     return 0;
 }
