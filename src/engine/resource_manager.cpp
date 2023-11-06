@@ -50,7 +50,6 @@ std::string ResourceManager::GetExecutablePath()
 
 void ResourceManager::LoadModelData(const std::string &modle_name, const std::string &path)
 {
-    std::cout << path << std::endl;
     std::ifstream f;
     f.open(path);
     if (!f.is_open())
@@ -61,20 +60,26 @@ void ResourceManager::LoadModelData(const std::string &modle_name, const std::st
     std::stringstream buffer;
     buffer << f.rdbuf();
     std::string data = buffer.str();
-    size_t found = data.find_first_of(" ");
+    size_t found = 0;
     size_t start = 0;
 
     while (found != std::string::npos)
     {
         std::string num = data.substr(start);
-        if (isdigit(num[0]))
+        if (isdigit(num[0]) || num[0] == '-')
         {
             float val = stof(num);
+            std::cout << val << " ";
             model_data_[modle_name].push_back(val);
         }
         found = data.find_first_of(" \n", found + 1);
         start = found + 1;
     }
+    auto v = model_data_[modle_name];
+    // for (auto &val : v) {
+    //     std::cout << val << " ";
+    // }
+    std::cout << std::endl;
 }
 
 std::vector<float> ResourceManager::GetModelData(const std::string &modle_name)

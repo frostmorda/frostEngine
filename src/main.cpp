@@ -14,13 +14,29 @@ public:
 };
 int main(int argc, char **argv)
 {
+    Game g;
     ResourceManager::SetExecutablePath(argv[0]);
     ResourceManager::LoadModelData("cube", ResourceManager::GetExecutablePath() + "model");
     auto data = ResourceManager::GetModelData("cube");
-    for (auto &val : data)
+    VertexBuffer vb(data.data(), data.size());
+    VertexBufferLayout vlo;
+    BufferLayout bl{3, GL_FLOAT, GL_FALSE};
+    vlo.AddBufferLayout(bl);
+    VertexArray VAO(vb, vlo);
+    ResourceManager::LoadShader("Def", ResourceManager::GetExecutablePath() + "vertex.glsl", ResourceManager::GetExecutablePath() + "fragment.glsl");
+    auto shader = ResourceManager::GetShader("Def");
+    std::shared_ptr<VertexArray> va = std::make_shared<VertexArray>(std::move(VAO));
+    Sprite s(shader, nullptr, va, glm::vec2(0, 0), glm::vec2(1, 1), 70, glm::vec3(0.0, 0.9, 0.5), "modelMatrix", "color");
+
+    while (!glfwWindowShouldClose(g.GetWindow()))
     {
-        std::cout << val << " ";
+        glClearColor(0, 0, 0, 1.f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        shader->Use();
+        VAO.Bind();
+        s.Draw();
+        glfwSwapBuffers(g.GetWindow());
+        glfwPollEvents();
     }
-    std::cout << std::endl;
     return 0;
 }

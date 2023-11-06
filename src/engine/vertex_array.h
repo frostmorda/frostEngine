@@ -18,8 +18,10 @@ public:
     ~VertexArray();
     void Bind() const;
     void Unbind() const;
+    const unsigned int GetSize() const { return size_; }
 
 private:
+    unsigned int size_;
     GLuint id_;
 };
 #endif // SRC_VERTEX_ARRAY_H_

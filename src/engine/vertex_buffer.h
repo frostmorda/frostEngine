@@ -16,9 +16,11 @@ public:
 
     void Bind() const;
     void Unbind() const;
-    void Update(const void *data, const unsigned int size) const;
+    void Update(const void *data, const unsigned int size);
+    const unsigned int GetSize() const { return size_; }
 
 private:
     GLuint id_;
+    unsigned int size_;
 };
 #endif // SRC_VERTEX_BUFFER_H_

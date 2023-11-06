@@ -99,7 +99,8 @@ GLuint Shader::CompileShader(const std::string &shader_source_file_path, const G
     file.close();
     GLuint shader;
     shader = glCreateShader(shader_type);
-    const char *shader_source = buf.str().c_str();
+    std::string str = buf.str();
+    const char *shader_source = str.c_str();
     glShaderSource(shader, 1, &shader_source, nullptr);
     glCompileShader(shader);
     GLint success;

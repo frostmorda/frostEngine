@@ -14,10 +14,10 @@ void Sprite::Draw()
 {
     shader_->Use();
     Transformation();
-    glActiveTexture(GL_TEXTURE0);
-    texture_->Bind();
+    // glActiveTexture(GL_TEXTURE0);
+    // texture_->Bind();
     vertex_array_->Bind();
-    glDrawArrays(GL_TRIANGLES, 0, 6);
+    glDrawArrays(GL_TRIANGLES, 0, vertex_array_->GetSize());
     vertex_array_->Unbind();
 }
 

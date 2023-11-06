@@ -17,5 +17,5 @@ const std::vector<BufferLayout> &VertexBufferLayout::GetBufferLayout() const
 void VertexBufferLayout::AddBufferLayout(BufferLayout bl)
 {
     buffer_layout_.push_back(bl);
-    stride_ += buffer_layout_.size();
+    stride_ += bl.size;
 }
