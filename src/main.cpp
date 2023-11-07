@@ -34,10 +34,12 @@ int main(int argc, char **argv)
         gm->SetRotation(curent_frame);
         gm->SetSize(glm::vec2(1, 1));
         gm->SetColor(glm::vec3(0.3f, 0.5f, 0.7f));
+        gm->SetPosition(glm::vec2(0, 0));
         gm->Draw();
         gm->SetSize(glm::vec2(0.5f, 0.5f));
         gm->SetColor(glm::vec3(0.6f, 0.2f, 0.7f));
-
+        gm->SetPosition(glm::vec2(0.5, 0.5));
+        gm->Draw();
         glfwSwapBuffers(g.GetWindow());
         glfwPollEvents();
     }

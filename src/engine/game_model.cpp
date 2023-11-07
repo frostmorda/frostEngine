@@ -83,7 +83,7 @@ void GameModel::SetVertexArray(std::shared_ptr<VertexArray> vertex_array)
 
 void GameModel::SetPosition(const glm::vec2 &position)
 {
-    position_ = position_;
+    position_ = position;
 }
 
 void GameModel::SetSize(const glm::vec2 &size)
