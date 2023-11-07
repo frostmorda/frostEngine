@@ -1,6 +1,6 @@
 #include "game_object.h"
 
-GameObject::GameObject(std::shared_ptr<Sprite> sprite) : sprite_(sprite)
+GameObject::GameObject(std::shared_ptr<GameModel> game_model) : game_model_(game_model)
 {
 }
 
@@ -10,5 +10,5 @@ GameObject::~GameObject()
 
 void GameObject::Draw()
 {
-    sprite_->Draw();
+    game_model_->Draw();
 }

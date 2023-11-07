@@ -5,6 +5,7 @@
 #include "vertex_buffer_layout.h"
 
 #include <glad/glad.h>
+#include <memory>
 
 class VertexArray
 {
@@ -12,7 +13,7 @@ public:
     VertexArray() = delete;
     VertexArray(const VertexArray &) = delete;
     VertexArray &operator=(const VertexArray &) = delete;
-    VertexArray(const VertexBuffer &vertex_buffer, const VertexBufferLayout &layout);
+    VertexArray(const std::shared_ptr<VertexBuffer> &vertex_buffer, const VertexBufferLayout &layout);
     VertexArray(VertexArray &&other) noexcept;
     VertexArray &operator=(VertexArray &&other) noexcept;
     ~VertexArray();

@@ -16,25 +16,28 @@ int main(int argc, char **argv)
 {
     Game g;
     ResourceManager::SetExecutablePath(argv[0]);
-    ResourceManager::LoadModelData("cube", ResourceManager::GetExecutablePath() + "model");
-    auto data = ResourceManager::GetModelData("cube");
-    VertexBuffer vb(data.data(), data.size());
+    ResourceManager::LoadGameModelData("cube", ResourceManager::GetExecutablePath() + "model");
     VertexBufferLayout vlo;
     BufferLayout bl{3, GL_FLOAT, GL_FALSE};
     vlo.AddBufferLayout(bl);
-    VertexArray VAO(vb, vlo);
-    ResourceManager::LoadShader("Def", ResourceManager::GetExecutablePath() + "vertex.glsl", ResourceManager::GetExecutablePath() + "fragment.glsl");
-    auto shader = ResourceManager::GetShader("Def");
-    std::shared_ptr<VertexArray> va = std::make_shared<VertexArray>(std::move(VAO));
-    Sprite s(shader, nullptr, va, glm::vec2(0, 0), glm::vec2(1, 1), 70, glm::vec3(0.0, 0.9, 0.5), "modelMatrix", "color");
+    ResourceManager::LoadVertexBuffer("cube", "cube");
+    ResourceManager::LoadVertexArray("cube", "cube", vlo);
+    ResourceManager::LoadShader("cube", ResourceManager::GetExecutablePath() + "vertex.glsl", ResourceManager::GetExecutablePath() + "fragment.glsl");
+    ResourceManager::LoadGameModel("cube", "cube", "cube", "cube", glm::vec2(0, 0), glm::vec2(1, 1), 45, glm::vec3(0.3f, 0.5f, 0.7f), "modelMatrix", "color");
+    auto gm = ResourceManager::GetGameModel("cube");
 
     while (!glfwWindowShouldClose(g.GetWindow()))
     {
+        float curent_frame = glfwGetTime();
         glClearColor(0, 0, 0, 1.f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        shader->Use();
-        VAO.Bind();
-        s.Draw();
+        gm->SetRotation(curent_frame);
+        gm->SetSize(glm::vec2(1, 1));
+        gm->SetColor(glm::vec3(0.3f, 0.5f, 0.7f));
+        gm->Draw();
+        gm->SetSize(glm::vec2(0.5f, 0.5f));
+        gm->SetColor(glm::vec3(0.6f, 0.2f, 0.7f));
+
         glfwSwapBuffers(g.GetWindow());
         glfwPollEvents();
     }

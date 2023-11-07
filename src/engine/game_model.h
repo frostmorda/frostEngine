@@ -1,17 +1,21 @@
-#ifndef SRC_SPRITE_H_
-#define SRC_SPRITE_H_
+#ifndef SRC_GAME_MODEL_H_
+#define SRC_GAME_MODEL_H_
 
 #include <memory>
 #include "shader.h"
 #include "texture.h"
 #include "vertex_array.h"
 
-class Sprite
+class GameModel
 {
 public:
-    Sprite() = delete;
-    Sprite(std::shared_ptr<Shader> shader, std::shared_ptr<Texture> texture, std::shared_ptr<VertexArray> vertex_array, const glm::vec2 &position, const glm::vec2 &size, const float rotation, const glm::vec3 &color, const std::string &model_matrix_name, const std::string &sprite_color_name);
-    ~Sprite();
+    GameModel();
+    GameModel(std::shared_ptr<Shader> shader, std::shared_ptr<Texture> texture, std::shared_ptr<VertexArray> vertex_array, const glm::vec2 &position, const glm::vec2 &size, const float rotation, const glm::vec3 &color, const std::string &model_matrix_name, const std::string &game_model_color_name);
+    GameModel(const GameModel &other) = delete;
+    GameModel &operator=(const GameModel &other) = delete;
+    GameModel(GameModel &&other);
+    GameModel &operator=(GameModel &&other);
+    ~GameModel();
     void Draw();
     void SetShader(std::shared_ptr<Shader> shader);
     void SetTexture(std::shared_ptr<Texture> texture);
@@ -30,7 +34,7 @@ private:
     float rotation_;
     glm::vec3 color_;
     std::string model_matrix_name_;
-    std::string sprite_color_name_;
+    std::string game_model_color_name_;
     void Transformation();
 };
-#endif // SRC_SPRITE_H_
+#endif // SRC_GAME_MODEL_H_

@@ -5,19 +5,15 @@
 #include <glm/glm.hpp>
 #include <glad/glad.h>
 
-#include "../engine/sprite.h"
+#include "../engine/game_model.h"
 class GameObject
 {
 public:
-    GameObject(std::shared_ptr<Sprite> sprite);
+    GameObject(std::shared_ptr<GameModel> GameModel);
     ~GameObject();
     void Draw();
 
 private:
-    std::shared_ptr<Sprite> sprite_;
-    glm::vec2 position_;
-    glm::vec2 size_;
-    glm::vec3 color_;
-    float rotation_;
+    std::shared_ptr<GameModel> game_model_;
 };
 #endif // SRC_GAME_OBJECT_H_

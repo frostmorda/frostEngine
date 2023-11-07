@@ -1,12 +1,12 @@
 #include "vertex_array.h"
 #include <iostream>
 
-VertexArray::VertexArray(const VertexBuffer &vertex_buffer, const VertexBufferLayout &layout)
+VertexArray::VertexArray(const std::shared_ptr<VertexBuffer> &vertex_buffer, const VertexBufferLayout &layout)
 {
     glGenVertexArrays(1, &id_);
     Bind();
-    vertex_buffer.Bind();
-    size_ = vertex_buffer.GetSize() / layout.GetStride();
+    vertex_buffer->Bind();
+    size_ = vertex_buffer->GetSize() / layout.GetStride();
     const auto &layout_buffer = layout.GetBufferLayout();
     GLbyte *offset = nullptr;
     for (unsigned int i = 0; i < layout_buffer.size(); ++i)
