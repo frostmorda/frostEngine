@@ -1,5 +1,5 @@
-#ifndef SRC_VERTEX_BUFFER_H_
-#define SRC_VERTEX_BUFFER_H_
+#ifndef SRC_ENGINE_VERTEX_BUFFER_H_
+#define SRC_ENGINE_VERTEX_BUFFER_H_
 
 #include <glad/glad.h>
 
@@ -23,4 +23,4 @@ private:
     GLuint id_;
     unsigned int size_;
 };
-#endif // SRC_VERTEX_BUFFER_H_
+#endif // SRC_ENGINE_VERTEX_BUFFER_H_

@@ -1,5 +1,5 @@
-#ifndef SRC_SHADER_H_
-#define SRC_SHADER_H_
+#ifndef SRC_ENGINE_SHADER_H_
+#define SRC_ENGINE_SHADER_H_
 
 #include <glad/glad.h>
 #include <iostream>
@@ -34,4 +34,4 @@ private:
     GLuint CompileShader(const std::string &shader_source_file_path, const GLenum shader_type);
 };
 
-#endif // SRC_SHADER_H_
+#endif // SRC_ENGINE_SHADER_H_

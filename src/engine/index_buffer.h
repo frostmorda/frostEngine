@@ -1,5 +1,5 @@
-#ifndef SRC_INDEX_BUFFER_H_
-#define SRC_INDEX_BUFFER_H_
+#ifndef SRC_ENGINE_INDEX_BUFFER_H_
+#define SRC_ENGINE_INDEX_BUFFER_H_
 
 #include <glad/glad.h>
 class IndexBuffer
@@ -18,4 +18,4 @@ public:
 private:
     GLuint id_;
 };
-#endif // SRC_INDEX_BUFFER_H_
+#endif // SRC_ENGINE_INDEX_BUFFER_H_

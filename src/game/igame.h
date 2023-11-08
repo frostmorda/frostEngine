@@ -1,5 +1,5 @@
-#ifndef SRC_IGAME_H_
-#define SRC_IGAME_H_
+#ifndef SRC_GAME_IGAME_H_
+#define SRC_GAME_IGAME_H_
 
 #include "game_object.h"
 #include <unordered_map>
@@ -37,4 +37,4 @@ private:
     std::unordered_map<std::string, std::shared_ptr<GameObject>> game_objects_;
     GLFWwindow *window_;
 };
-#endif // SRC_IGAME_H_
+#endif // SRC_GAME_IGAME_H_

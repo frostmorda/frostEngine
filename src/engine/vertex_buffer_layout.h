@@ -1,5 +1,5 @@
-#ifndef SRC_VERTEX_BUFFER_LAYOUT_H_
-#define SRC_VERTEX_BUFFER_LAYOUT_H_
+#ifndef SRC_ENGINE_VERTEX_BUFFER_LAYOUT_H_
+#define SRC_ENGINE_VERTEX_BUFFER_LAYOUT_H_
 
 #include <glad/glad.h>
 #include <vector>
@@ -22,4 +22,4 @@ private:
     std::vector<BufferLayout> buffer_layout_;
     unsigned int stride_;
 };
-#endif // SRC_VERTEX_BUFFER_LAYOUT_H_
+#endif // SRC_ENGINE_VERTEX_BUFFER_LAYOUT_H_

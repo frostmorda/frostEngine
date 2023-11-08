@@ -1,5 +1,5 @@
-#ifndef SRC_VERTEX_ARRAY_H_
-#define SRC_VERTEX_ARRAY_H_
+#ifndef SRC_ENGINE_VERTEX_ARRAY_H_
+#define SRC_ENGINE_VERTEX_ARRAY_H_
 
 #include "vertex_buffer.h"
 #include "vertex_buffer_layout.h"
@@ -25,4 +25,4 @@ private:
     unsigned int size_;
     GLuint id_;
 };
-#endif // SRC_VERTEX_ARRAY_H_
+#endif // SRC_ENGINE_VERTEX_ARRAY_H_

@@ -1,5 +1,5 @@
-#ifndef SRC_TEXTURE_H_
-#define SRC_TEXTURE_H_
+#ifndef SRC_ENGINE_TEXTURE_H_
+#define SRC_ENGINE_TEXTURE_H_
 
 #include <string>
 #include <glad/glad.h>
@@ -24,4 +24,4 @@ private:
     GLuint min_filter_;
     GLuint mag_filter_;
 };
-#endif // SRC_TEXTURE_H_
+#endif // SRC_ENGINE_TEXTURE_H_

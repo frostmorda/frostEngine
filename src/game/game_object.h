@@ -1,5 +1,5 @@
-#ifndef SRC_GAME_OBJECT_H_
-#define SRC_GAME_OBJECT_H_
+#ifndef SRC_GAME_GAME_OBJECT_H_
+#define SRC_GAME_GAME_OBJECT_H_
 
 #include <memory>
 #include <glm/glm.hpp>
@@ -16,4 +16,4 @@ public:
 private:
     std::shared_ptr<GameModel> game_model_;
 };
-#endif // SRC_GAME_OBJECT_H_
+#endif // SRC_GAME_GAME_OBJECT_H_

@@ -1,5 +1,5 @@
-#ifndef SRC_RESOURCE_MANAGER_H_
-#define SRC_RESOURCE_MANAGER_H_
+#ifndef SRC_ENGINE_RESOURCE_MANAGER_H_
+#define SRC_ENGINE_RESOURCE_MANAGER_H_
 
 #include <unordered_map>
 #include <memory>
@@ -47,4 +47,4 @@ private:
     static std::unordered_map<std::string, std::vector<float>> game_model_data_;
     static std::string executable_path_;
 };
-#endif // SRC_RESOURCE_MANAGER_H_
+#endif // SRC_ENGINE_RESOURCE_MANAGER_H_

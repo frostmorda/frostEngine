@@ -1,5 +1,5 @@
-#ifndef SRC_GAME_MODEL_H_
-#define SRC_GAME_MODEL_H_
+#ifndef SRC_ENGINE_GAME_MODEL_H_
+#define SRC_ENGINE_GAME_MODEL_H_
 
 #include <memory>
 #include "shader.h"
@@ -37,4 +37,4 @@ private:
     std::string game_model_color_name_;
     void Transformation();
 };
-#endif // SRC_GAME_MODEL_H_
+#endif // SRC_ENGINE_GAME_MODEL_H_
