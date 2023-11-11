@@ -8,7 +8,7 @@ GameModel::GameModel()
     vertex_array_ = nullptr;
 }
 
-GameModel::GameModel(std::shared_ptr<Shader> shader, std::shared_ptr<Texture> texture, std::shared_ptr<VertexArray> vertex_array, const glm::vec2 &position, const glm::vec2 &size, const float rotation, const glm::vec3 &color, const std::string &model_matrix_name, const std::string &game_model_color_name)
+GameModel::GameModel(std::shared_ptr<Shader> shader, std::shared_ptr<Texture> texture, std::shared_ptr<VertexArray> vertex_array, const glm::vec3 &position, const glm::vec3 &size, const float rotation, const glm::vec3 &color, const std::string &model_matrix_name, const std::string &game_model_color_name)
     : shader_(std::move(shader)), texture_(std::move(texture)), vertex_array_(std::move(vertex_array)), position_(position), size_(size), rotation_(rotation), color_(color), model_matrix_name_(model_matrix_name), game_model_color_name_(game_model_color_name)
 {
 }
@@ -81,12 +81,12 @@ void GameModel::SetVertexArray(std::shared_ptr<VertexArray> vertex_array)
     vertex_array_ = std::move(vertex_array);
 }
 
-void GameModel::SetPosition(const glm::vec2 &position)
+void GameModel::SetPosition(const glm::vec3 &position)
 {
     position_ = position;
 }
 
-void GameModel::SetSize(const glm::vec2 &size)
+void GameModel::SetSize(const glm::vec3 &size)
 {
     size_ = size;
 }
@@ -105,11 +105,11 @@ void GameModel::Transformation()
 {
     shader_->Use();
     glm::mat4 model_matrix(1.0f);
-    model_matrix = glm::translate(model_matrix, glm::vec3(position_, 0.0f));
-    model_matrix = glm::translate(model_matrix, glm::vec3(0.5f * position_, 0.0f));
+    model_matrix = glm::translate(model_matrix, position_);
+    model_matrix = glm::translate(model_matrix, 0.5f * position_);
     model_matrix = glm::rotate(model_matrix, glm::radians(rotation_), glm::vec3(0.0f, 0.0f, 1.0f));
-    model_matrix = glm::translate(model_matrix, glm::vec3(-0.5f * position_, 0.0f));
-    model_matrix = scale(model_matrix, glm::vec3(size_, 1.0f));
+    model_matrix = glm::translate(model_matrix, -0.5f * position_);
+    model_matrix = scale(model_matrix, size_);
     shader_->SetUniform(model_matrix_name_, model_matrix);
     shader_->SetUniform(game_model_color_name_, color_);
 }

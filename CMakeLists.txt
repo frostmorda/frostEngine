@@ -10,6 +10,7 @@ set(SOURCES
     src/engine/vertex_buffer_layout.cpp
     src/engine/index_buffer.cpp
     src/engine/game_model.cpp
+    src/engine/camera.cpp
     src/game/igame.cpp
     src/game/game_object.cpp)
 add_library(${PROJECT_NAME}_lib STATIC ${SOURCES})

@@ -8,6 +8,7 @@ std::unordered_map<std::string, std::shared_ptr<VertexArray>> ResourceManager::v
 std::unordered_map<std::string, std::shared_ptr<VertexBuffer>> ResourceManager::vertexes_buffers_;
 std::unordered_map<std::string, std::shared_ptr<GameModel>> ResourceManager::game_models_;
 std::unordered_map<std::string, std::vector<float>> ResourceManager::game_model_data_;
+std::unordered_map<std::string, std::shared_ptr<Camera>> ResourceManager::camera_;
 std::string ResourceManager::executable_path_;
 
 void ResourceManager::LoadShader(const std::string &shader_name, const std::string &vertex_shader_source_file_path, const std::string &fragment_shader_source_file_path)
@@ -67,7 +68,7 @@ std::shared_ptr<VertexBuffer> ResourceManager::GetVertexBuffer(const std::string
     return vertexes_buffers_[vertex_buffer_name];
 }
 
-void ResourceManager::LoadGameModel(const std::string &game_model_name, const std::string &shader_name, const std::string &texture_name, const std::string &vertex_array_name, const glm::vec2 &position, const glm::vec2 &size, const float rotation, const glm::vec3 &color, const std::string &model_matrix_name, const std::string &game_model_color_name)
+void ResourceManager::LoadGameModel(const std::string &game_model_name, const std::string &shader_name, const std::string &texture_name, const std::string &vertex_array_name, const glm::vec3 &position, const glm::vec3 &size, const float rotation, const glm::vec3 &color, const std::string &model_matrix_name, const std::string &game_model_color_name)
 {
     game_models_[game_model_name] = std::make_shared<GameModel>(GetShader(shader_name), GetTexture(texture_name), GetVertexArray(vertex_array_name), position, size, rotation, color, model_matrix_name, game_model_color_name);
 }
@@ -120,4 +121,24 @@ void ResourceManager::LoadGameModelData(const std::string &modle_name, const std
 std::vector<float> ResourceManager::GetGameModelData(const std::string &modle_name)
 {
     return game_model_data_[modle_name];
+}
+
+void ResourceManager::LoadCamera(const std::string &camera_name, glm::vec3 position, glm::vec3 world_up, float yaw, float pitch)
+{
+    camera_[camera_name] = std::make_shared<Camera>(position, world_up, yaw, pitch);
+}
+
+void ResourceManager::LoadCamera(const std::string &camera_name, float pos_x, float pos_y, float pos_z, float world_up_x, float world_up_y, float world_up_z, float yaw, float pitch)
+{
+    camera_[camera_name] = std::make_shared<Camera>(glm::vec3(pos_x, pos_y, pos_z), glm::vec3(world_up_x, world_up_y, world_up_z), yaw, pitch);
+}
+
+void ResourceManager::LoadCamera(const std::string &camera_name, Camera camera)
+{
+    camera_[camera_name] = std::make_shared<Camera>(std::move(camera));
+}
+
+std::shared_ptr<Camera> &ResourceManager::GetCamera(const std::string &camera_name)
+{
+    return camera_[camera_name];
 }
