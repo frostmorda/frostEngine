@@ -30,10 +30,10 @@ public:
 
     GLFWwindow *GetWindow() { return window_; }
 
-    float GetLastFrame() { return last_frame_; }
+    const float GetLastFrame() const { return last_frame_; }
     void SetLastFrame(float frame) { last_frame_ = frame; }
 
-    float GetDeltaTime() { return delta_time_; }
+    const float GetDeltaTime() const { return delta_time_; }
     void SetDeltaTime(float delta_time) { delta_time_ = delta_time; }
 
     const int GetWidth() const { return width_; }
