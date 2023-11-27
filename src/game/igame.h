@@ -36,6 +36,9 @@ public:
     float GetDeltaTime() { return delta_time_; }
     void SetDeltaTime(float delta_time) { delta_time_ = delta_time; }
 
+    const int GetWidth() const { return width_; }
+    const int GetHeight() const { return height_; }
+
 private:
     unsigned int width_;
     unsigned int height_;
